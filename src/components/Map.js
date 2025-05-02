@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import List from "./List";
 let mapData = require("../germany.geojson");
 let citiesData = require("../cities.csv");
 
@@ -7,6 +8,11 @@ function cleanString(str) {
     return str
         .replace(/ü/g, "u")
         .replace(/ö/g, "o")
+        .replace(/ß/g, "ss")
+        .replace(/v. d./g, "vor der")
+        .replace(/v.d./g, "vor der")
+        .replace(/\s*/g, "")
+        .replace(/ä/g, "a")
         .toLowerCase();
 }
 
@@ -23,6 +29,7 @@ const Map = () => {
             .scale(3000);
     const [namedCities, setNamedCities] = useState(new Set());
     const [nNamed, setNNamed] = useState(0);
+    const [cities, setCities] = useState([]);
 
     function handleChange(e) {
         const val = e.target.value;
@@ -31,7 +38,18 @@ const Map = () => {
                 e.target.value = "";
                 handleCityNamed(d["city-state"], d.Population, +d.Longitude, +d.Latitude);
                 namedCities.add(+d.index);
-                setNNamed(nNamed + 1);
+                setCities((prevCities) => {
+                    return [{
+                        city: d.City,
+                        pop: +d.Population,
+                        lon: +d.Longitude,
+                        lat: +d.Latitude,
+                        citystate: d["city-state"],
+                        id: +d.index
+                    }, ...prevCities];
+                }
+                );
+                // setNNamed(nNamed + 1);
             }
             setNNamed(namedCities.size);
             return {
@@ -130,6 +148,9 @@ const Map = () => {
           <input type="text" onChange={handleChange} />
           <div ref={mapRef}></div>
           <p>You have named {nNamed} municipalities.</p>
+          <div className="cities-list-container">
+            <List items={cities} />
+          </div>
         </div>
 };
 
