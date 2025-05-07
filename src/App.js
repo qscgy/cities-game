@@ -3,13 +3,19 @@ import './App.css';
 import Map from "./components/Map";
 
 function App() {
-  const [value, setValue] = useState("");
-  function handleChange(e) {
-      setValue(e.target.value);
-  }
+  const [currentCountry, setCurrentCountry] = useState("France");
+
+  const handleCountryChange = (country) => {
+    console.log("Country changed to:", country);
+    setCurrentCountry(country);
+  };
+
   return (
     <div className="App">
-      <Map />
+      <span style={{'fontSize': '20px'}}>Select country:</span>
+      <button onClick={() => (handleCountryChange("Germany"))}>Germany</button>
+      <button onClick={() => (handleCountryChange("France"))}>France</button>
+      <Map country={currentCountry} key={`map-${currentCountry}`} />
     </div>
   );
 }

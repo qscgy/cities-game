@@ -44,3 +44,28 @@
   justify-content: center;
   text-align: left;
 }
+
+button {
+  background-color: #3532da;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10px;
+  transition: background-color 0.1s ease;
+}
+button:hover {
+  background-color: #21a1f1;
+}
+button:focus {
+  outline: none;
+}
+button:active {
+  background-color: #1e90ff;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
