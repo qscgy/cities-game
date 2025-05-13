@@ -1,4 +1,4 @@
-index;City;State;city-state;Latitude;Longitude;Population
+index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 02655;Ronchères;Hauts-de-France;Ronchères, Hauts-de-France;49.139269302848284;3.6021568523595784;146
 02674;Saint-Clément;Hauts-de-France;Saint-Clément, Hauts-de-France;49.77481313413916;4.072918707174833;49
 02680;Saint-Gobain;Hauts-de-France;Saint-Gobain, Hauts-de-France;49.595410398372955;3.3929901717309763;2304
@@ -20081,7 +20081,7 @@ index;City;State;city-state;Latitude;Longitude;Population
 49347;Tiercé;Pays de la Loire;Tiercé, Pays de la Loire;47.62459624543323;-0.4437333890875884;4470
 49371;Vezins;Pays de la Loire;Vezins, Pays de la Loire;47.11552815073349;-0.7216806217962601;1733
 50117;Champeaux;Normandie;Champeaux, Normandie;48.73810817030433;-1.529473022755925;347
-50129;Cherbourg-en-Cotentin;Normandie;Cherbourg-en-Cotentin, Normandie;49.631753561593364;-1.620923861136555;77789
+50129;Cherbourg-en-Cotentin;Normandie;Cherbourg-en-Cotentin, Normandie;49.631753561593364;-1.620923861136555;77789;Cherbourg
 50130;Chérencé-le-Héron;Normandie;Chérencé-le-Héron, Normandie;48.79955391532789;-1.201738558124573;432
 50209;Gonneville-Le Theil;Normandie;Gonneville-Le Theil, Normandie;49.61880041948319;-1.4694952371573409;1515
 50227;Le Ham;Normandie;Le Ham, Normandie;49.449468414040574;-1.4086713559005806;312
@@ -34428,7 +34428,7 @@ index;City;State;city-state;Latitude;Longitude;Population
 62140;Bléquin;Hauts-de-France;Bléquin, Hauts-de-France;50.664722790626115;1.9716841984444033;492
 62149;Boisdinghem;Hauts-de-France;Boisdinghem, Hauts-de-France;50.748955508036275;2.0943514122952354;244
 62154;Bonnières;Hauts-de-France;Bonnières, Hauts-de-France;50.23518832793422;2.2739556346463803;682
-62160;Boulogne-sur-Mer;Hauts-de-France;Boulogne-sur-Mer, Hauts-de-France;50.72677917750605;1.606116517144285;40588
+62160;Boulogne-sur-Mer;Hauts-de-France;Boulogne-sur-Mer, Hauts-de-France;50.72677917750605;1.606116517144285;40588;Boulogne
 62232;La Comté;Hauts-de-France;La Comté, Hauts-de-France;50.42657228890854;2.499617422113005;892
 62244;Coulogne;Hauts-de-France;Coulogne, Hauts-de-France;50.91696595094436;1.886559994173725;5451
 62276;Douvrin;Hauts-de-France;Douvrin, Hauts-de-France;50.512514990672685;2.82662559335497;5733

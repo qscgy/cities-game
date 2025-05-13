@@ -8,13 +8,21 @@ function cleanStringGenerator(country) {
         return function (str) {
             return str
                 .toLowerCase()
+                .replace(/\(/g, "")
+                .replace(/\)/g, "")
                 .replace(/ü/g, "u")
                 .replace(/ö/g, "o")
                 .replace(/ß/g, "ss")
+                .replace(/ä/g, "a")
                 .replace(/v. d./g, "vor der")
                 .replace(/v.d./g, "vor der")
-                .replace(/\s*/g, "")
-                .replace(/ä/g, "a");
+                .replace(/b./g, "bei")
+                .replace(/b. d./g, "bei der")
+                .replace(/a. d./g, "an der")
+                .replace(/i.d./g, "in der")
+                .replace(/i. d./g, "in der")
+                .replace(/i.Bay./g, "in Bayern")
+                .replace(/\s*/g, "");
         };
     } else if (country === "France") {
         return function (str) {
@@ -46,18 +54,59 @@ function cleanStringGenerator(country) {
 
 const fmt = d3.format(",d");
 
-const Map = ({ country }) => {
+const buildIndex = (data, keyGen) => {
+    const indexedData = {};
+    data.forEach((d) => {
+        const key = keyGen(d.City);
+        if (!indexedData[key]) {
+            indexedData[key] = [d];
+        } else {
+            indexedData[key].push(d);
+        }
+    });
+    console.log("Indexed data:", indexedData);
+    return indexedData;
+}
 
+const parseCitiesData = (d) => {
+    let altNames;
+    if (d.AlternateNames.includes(",")) {
+        altNames = d.AlternateNames.split(",").map((name) => name.trim());
+    } else {
+        altNames = [];
+    }
+
+    return {
+        City: d.City,
+        Population: +d.Population,
+        Longitude: +d.Longitude,
+        Latitude: +d.Latitude,
+        "city-state": d["city-state"],
+        index: +d.index,
+        AlternateNames: altNames
+    };
+}
+
+const loadCitiesData = (country) => {
     const cleanString = cleanStringGenerator(country);
-    let mapData, citiesData, ctr, sc;
     if (country === "Germany") {
-        mapData = require("../germany.geojson");
-        citiesData = require("../cities.csv");
+        return d3.dsv(";", "cities-DE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    } else if (country === "France") {
+        const data = d3.dsv(";", "cities-FR.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+        return data
+    }
+    throw new Error(`Unsupported country: ${country}`);
+};
+
+const Map = ({ country }) => {
+    const cleanString = cleanStringGenerator(country);
+    let ctr, sc;
+    const [citiesData, setCitiesData] = useState();
+    const [citiesDataFile, setCitiesDataFile] = useState();
+    if (country === "Germany") {
         ctr = [10.5, 51.3];
         sc = 3000;
     } else if (country === "France") {
-        mapData = require("../fr.geojson");
-        citiesData = require("../cities-FR.csv");
         ctr = [2.5, 46.5];
         sc = 2500;
     }
@@ -74,13 +123,14 @@ const Map = ({ country }) => {
     const [nNamed, setNNamed] = useState(0);
     const [cities, setCities] = useState([]);
     const [totalPop, setTotalPop] = useState(0);
-    const [inputValue, setInputValue] = useState('');
 
-    function handleChange(e) {
+    function handleChangeWithFile(e){
         const val = e.target.value;
-        d3.dsv(";", citiesData).then(function (data) {
+        d3.dsv(";", citiesDataFile, parseCitiesData).then(function (data) {
             data.forEach((d) => {
-                if(cleanString(val) === cleanString(d.City) && !namedCities.has(+d.index)) {
+                if(((cleanString(val) === cleanString(d.City)) || 
+                    d.AlternateNames.some((v)=>cleanString(val)===cleanString(v)))
+                     && !namedCities.has(+d.index)) {
                     e.target.value = "";
                     handleCityNamed(d["city-state"], d.Population, +d.Longitude, +d.Latitude);
                     namedCities.add(+d.index);
@@ -100,6 +150,34 @@ const Map = ({ country }) => {
                 }
             });
         });
+        // setTotalPop(cities.reduce((acc, city) => acc + city.pop, 0));
+    }
+
+    function handleChange(e) {
+        const val = e.target.value;
+        if (cleanString(val) in citiesData) {
+            const cities = citiesData[cleanString(val)];
+            if (!namedCities.has(+cities[0].index)) {
+                e.target.value = "";
+                cities.forEach((d) => {
+                    handleCityNamed(d["city-state"], d.Population, +d.Longitude, +d.Latitude);
+                    namedCities.add(+d.index);
+                    setTotalPop((prevTotal) => prevTotal + +d.Population);
+                    setNNamed(namedCities.size);
+                    setCities((prevCities) => {
+                        return [{
+                            city: d.City,
+                            pop: +d.Population,
+                            lon: +d.Longitude,
+                            lat: +d.Latitude,
+                            citystate: d["city-state"],
+                            id: +d.index
+                        }, ...prevCities];
+                    }
+                    );
+                });
+        }
+        }
         // setTotalPop(cities.reduce((acc, city) => acc + city.pop, 0));
     }
 
@@ -137,6 +215,29 @@ const Map = ({ country }) => {
     }
 
     useEffect(() => {
+        loadCitiesData(country).then((data) => {
+            setCitiesData(data);
+            console.log("Cities data loaded:", data);
+        }
+        ).catch((error) => {
+            console.error("Error loading the cities data:", error);
+        });
+        if (country === "Germany") {
+            setCitiesDataFile("cities-DE.csv");
+        }
+        else if (country === "France") {
+            setCitiesDataFile("cities-FR.csv");
+        } else {
+            console.error("Unsupported country:", country);
+        }
+        let mapData;
+        if (country === "Germany") {
+            mapData = "germany.geojson";
+        } else if (country === "France") {
+            mapData = "france.geojson";
+        }
+        console.log("Map data loaded for country:", country);
+
         const svg = d3
             .select(mapRef.current)
             .append("svg")
@@ -182,7 +283,7 @@ const Map = ({ country }) => {
         }).catch((error) => {
             console.error("Error loading the GeoJSON file:", error);
         });
-    }, []);
+    }, [country]);
 
     return <div className="App">
           <h1>City Test</h1>

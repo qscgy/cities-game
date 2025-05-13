@@ -1,4 +1,4 @@
-index;State;City;Population;Longitude;Latitude;city-state
+index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 0;Schleswig-Holstein;Flensburg;92667;9.43751;54.78252;Flensburg, Schleswig-Holstein
 1;Schleswig-Holstein;Kiel;248873;10.13727;54.321775;Kiel, Schleswig-Holstein
 2;Schleswig-Holstein;Lübeck;219044;10.683932;53.866269;Lübeck, Schleswig-Holstein
@@ -2466,7 +2466,7 @@ index;State;City;Population;Longitude;Latitude;city-state
 2464;Nordrhein-Westfalen;Unna;60223;7.689932;51.534878;Unna, Nordrhein-Westfalen
 2465;Nordrhein-Westfalen;Werne;29868;7.635119;51.663179;Werne, Nordrhein-Westfalen
 2466;Hessen;Darmstadt;164792;8.653838;49.872238;Darmstadt, Hessen
-2467;Hessen;Frankfurt am Main;775790;8.682433;50.11088;Frankfurt am Main, Hessen
+2467;Hessen;Frankfurt am Main;775790;8.682433;50.11088;Frankfurt am Main, Hessen;Frankfurt
 2468;Hessen;Offenbach am Main;135490;8.764442;50.105567;Offenbach am Main, Hessen
 2469;Hessen;Wiesbaden;285522;8.239138;50.081698;Wiesbaden, Hessen
 2470;Hessen;Abtsteinach;2472;8.786237;49.544051;Abtsteinach, Hessen
@@ -4661,7 +4661,7 @@ index;State;City;Population;Longitude;Latitude;city-state
 4659;Rheinland-Pfalz;Ellerstadt;2458;8.258852;49.461405;Ellerstadt, Rheinland-Pfalz
 4660;Rheinland-Pfalz;Friedelsheim;1412;8.22256;49.447276;Friedelsheim, Rheinland-Pfalz
 4661;Rheinland-Pfalz;Gönnheim;1586;8.237788;49.448987;Gönnheim, Rheinland-Pfalz
-4662;Rheinland-Pfalz;Wachenheim an der Weinstraße;4535;8.180798;49.439981;Wachenheim an der Weinstraße, Rheinland-Pfalz
+4662;Rheinland-Pfalz;Wachenheim an der Weinstraße;4535;8.180798;49.439981;Wachenheim an der Weinstraße, Rheinland-Pfalz;Wachenheim
 4663;Rheinland-Pfalz;Altleiningen;1738;8.074275;49.508098;Altleiningen, Rheinland-Pfalz
 4664;Rheinland-Pfalz;Battenberg (Pfalz);383;8.138375;49.532039;Battenberg (Pfalz), Rheinland-Pfalz
 4665;Rheinland-Pfalz;Bissersheim;455;8.203761;49.536556;Bissersheim, Rheinland-Pfalz
@@ -6295,7 +6295,7 @@ index;State;City;Population;Longitude;Latitude;city-state
 6293;Baden-Württemberg;Schwenningen;1681;8.997429;48.10473;Schwenningen, Baden-Württemberg
 6294;Baden-Württemberg;Stetten am kalten Markt;4884;9.077554;48.121999;Stetten am kalten Markt, Baden-Württemberg
 6295;Bayern;Ingolstadt;142308;11.423387;48.76542;Ingolstadt, Bayern
-6296;Bayern;München;1510378;11.575997;48.137683;München, Bayern
+6296;Bayern;München;1510378;11.575997;48.137683;München, Bayern;Munich
 6297;Bayern;Rosenheim;65192;12.128932;47.856358;Rosenheim, Bayern
 6298;Bayern;Altötting;13172;12.67892;48.227986;Altötting, Bayern
 6299;Bayern;Burghausen;19494;12.831282;48.168825;Burghausen, Bayern
@@ -7574,7 +7574,7 @@ index;State;City;Population;Longitude;Latitude;city-state
 7572;Bayern;Ansbach;42311;10.577254;49.303682;Ansbach, Bayern
 7573;Bayern;Erlangen;117806;11.003274;49.59508;Erlangen, Bayern
 7574;Bayern;Fürth;132032;10.989974;49.477384;Fürth, Bayern
-7575;Bayern;Nürnberg;526091;11.075269;49.450938;Nürnberg, Bayern
+7575;Bayern;Nürnberg;526091;11.075269;49.450938;Nürnberg, Bayern;Nuremberg
 7576;Bayern;Schwabach;41380;11.024451;49.328888;Schwabach, Bayern
 7577;Bayern;Arberg;2212;10.617586;49.144689;Arberg, Bayern
 7578;Bayern;Aurach;3166;10.412619;49.244603;Aurach, Bayern
@@ -7895,7 +7895,7 @@ index;State;City;Population;Longitude;Latitude;city-state
 7893;Bayern;Waldfensterer Forst;0;9.94484;50.243612;Waldfensterer Forst, Bayern
 7894;Bayern;Bad Neustadt a.d.Saale;15720;10.206512;50.329758;Bad Neustadt a.d.Saale, Bayern
 7895;Bayern;Bischofsheim i.d.Rhön;4756;10.008969;50.400975;Bischofsheim i.d.Rhön, Bayern
-7896;Bayern;Bad Königshofen i.Grabfeld;6176;10.467271;50.299384;Bad Königshofen i.Grabfeld, Bayern
+7896;Bayern;Bad Königshofen i.Grabfeld;6176;10.467271;50.299384;Bad Königshofen i.Grabfeld, Bayern;Bad Königshofen
 7897;Bayern;Oberelsbach;2661;10.119621;50.440597;Oberelsbach, Bayern
 7898;Bayern;Sandberg;2381;10.007038;50.34894;Sandberg, Bayern
 7899;Bayern;Bastheim;2039;10.203209;50.402048;Bastheim, Bayern
