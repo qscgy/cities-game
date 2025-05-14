@@ -56,6 +56,7 @@ const fmt = d3.format(",d");
 
 const buildIndex = (data, keyGen) => {
     const indexedData = {};
+    const altNames = {};
     data.forEach((d) => {
         const key = keyGen(d.City);
         if (!indexedData[key]) {
@@ -63,28 +64,45 @@ const buildIndex = (data, keyGen) => {
         } else {
             indexedData[key].push(d);
         }
+        if (indexedData[key][0].altNames.length > 0){
+            indexedData[key][0].altNames.forEach((name) => {
+                altNames[keyGen(name)] = d;
+            })
+        }
     });
-    console.log("Indexed data:", indexedData);
+    console.log(altNames)
+    for (const key in altNames) {
+        if (key in indexedData) {
+            indexedData[key].push(altNames[key]);
+        } else {
+            indexedData[key] = [altNames[key]];
+        }
+    }
     return indexedData;
 }
 
 const parseCitiesData = (d) => {
+    // console.log(d.index);
     let altNames;
     if (d.AlternateNames.includes(",")) {
         altNames = d.AlternateNames.split(",").map((name) => name.trim());
-    } else {
+    } else if (d.AlternateNames.length > 0) {
+        altNames = [d.AlternateNames.trim()];
+    }
+    else {
         altNames = [];
     }
 
-    return {
+    const obj = {
         City: d.City,
         Population: +d.Population,
         Longitude: +d.Longitude,
         Latitude: +d.Latitude,
         "city-state": d["city-state"],
         index: +d.index,
-        AlternateNames: altNames
+        altNames: altNames
     };
+    return obj;
 }
 
 const loadCitiesData = (country) => {
@@ -157,9 +175,9 @@ const Map = ({ country }) => {
         const val = e.target.value;
         if (cleanString(val) in citiesData) {
             const cities = citiesData[cleanString(val)];
-            if (!namedCities.has(+cities[0].index)) {
-                e.target.value = "";
-                cities.forEach((d) => {
+            cities.forEach((d) => {
+                if (!namedCities.has(+d.index)) {
+                    e.target.value = "";
                     handleCityNamed(d["city-state"], d.Population, +d.Longitude, +d.Latitude);
                     namedCities.add(+d.index);
                     setTotalPop((prevTotal) => prevTotal + +d.Population);
@@ -173,16 +191,15 @@ const Map = ({ country }) => {
                             citystate: d["city-state"],
                             id: +d.index
                         }, ...prevCities];
-                    }
-                    );
-                });
-        }
+                    });
+                }
+            });
         }
         // setTotalPop(cities.reduce((acc, city) => acc + city.pop, 0));
     }
 
     const handleCityNamed = (citystate, pop, lon, lat) => {
-        console.log("City named:", citystate, pop, lon, lat);
+        // console.log("City named:", citystate, pop, lon, lat);
         const svg = d3
             .select(mapRef.current)
             .select("svg");
@@ -195,8 +212,7 @@ const Map = ({ country }) => {
             .select("#tooltip");
 
         var coords = projection([lon, lat]);
-        svg
-            .append("circle")
+        svg.append("circle")
             .attr("cx", coords[0])
             .attr("cy", coords[1])
             .attr("r", circleScale(pop))
@@ -217,7 +233,9 @@ const Map = ({ country }) => {
     useEffect(() => {
         loadCitiesData(country).then((data) => {
             setCitiesData(data);
-            console.log("Cities data loaded:", data);
+            console.log(data['cherbourg']);
+            console.log(data['cherbourgencotentin']);
+            console.log("Cities data loaded for country:", country);
         }
         ).catch((error) => {
             console.error("Error loading the cities data:", error);
