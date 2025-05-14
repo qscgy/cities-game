@@ -14,14 +14,14 @@ function cleanStringGenerator(country) {
                 .replace(/ö/g, "o")
                 .replace(/ß/g, "ss")
                 .replace(/ä/g, "a")
-                .replace(/v. d./g, "vor der")
-                .replace(/v.d./g, "vor der")
-                .replace(/b./g, "bei")
-                .replace(/b. d./g, "bei der")
-                .replace(/a. d./g, "an der")
-                .replace(/i.d./g, "in der")
-                .replace(/i. d./g, "in der")
-                .replace(/i.Bay./g, "in Bayern")
+                .replace(/v\. d\./g, "vor der")
+                .replace(/v\.d\./g, "vor der")
+                .replace(/b\./g, "bei")
+                .replace(/b\. d\./g, "bei der")
+                .replace(/a\. d\./g, "an der")
+                .replace(/i\.d\./g, "in der")
+                .replace(/i\. d\./g, "in der")
+                .replace(/i\.Bay\./g, "in Bayern")
                 .replace(/\s*/g, "");
         };
     } else if (country === "France") {
@@ -49,6 +49,14 @@ function cleanStringGenerator(country) {
                 .replace(/-/g, " ")
                 .replace(/\s*/g, "");
         };
+    } else {
+        return function (str) {
+            return str
+                .toLowerCase()
+                .replace(/'/g, "")
+                .replace(/-/g, " ")
+                .replace(/\s*/g, "");
+        }
     }
 }
 
@@ -100,9 +108,20 @@ const parseCitiesData = (d) => {
         Latitude: +d.Latitude,
         "city-state": d["city-state"],
         index: +d.index,
-        altNames: altNames
+        altNames: altNames,
+        isStateCapital: d.isStateCapital
     };
     return obj;
+}
+
+const adminName = (country) => {
+    if (country==='France'){
+        return 'regional';
+    } else if (country=='Germany'){
+        return 'state';
+    } else if (country==='Netherlands'){
+        return 'provincial';
+    }
 }
 
 const loadCitiesData = (country) => {
@@ -111,22 +130,77 @@ const loadCitiesData = (country) => {
         return d3.dsv(";", "cities-DE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     } else if (country === "France") {
         const data = d3.dsv(";", "cities-FR.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-        return data
+        return data;
+    } else if (country === "Netherlands") {
+        return d3.dsv(";", "cities-NL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     }
     throw new Error(`Unsupported country: ${country}`);
 };
 
+const findTotalOver = (data, n) => {
+    let total = 0;
+    // because each alternate name is a separate entry, we need to check for duplicates
+    const seen = new Set();
+     for (const key in data){
+        const dl = data[key];
+        dl.forEach((d) => {
+            if (+d.Population > n && !seen.has(d.index)) {
+                total += 1;
+                seen.add(d.index);
+            }
+        });
+    };
+    console.log(`Total over ${n}: `, total);
+    return total;
+}
+
+function countCapitals(data) {
+    let total = 0;
+    const seen = new Set();
+     for (const key in data) {
+        const dl = data[key];
+        dl.forEach((d) => {
+            if (d.isStateCapital==='True' && !seen.has(d.index)) {
+                total += 1;
+                seen.add(d.index);
+            }
+        });
+    };
+    console.log(`Total capitals: `, total);
+    return total;
+}
+
 const Map = ({ country }) => {
     const cleanString = cleanStringGenerator(country);
     let ctr, sc;
+
+    // citiesData is a dictionary with the cleaned city name as key and an array of cities with that cleaned name as the value
+    // each city is an object with the following structure:
+    // {
+    //      City: "'s-Gravenhage",
+    //      Population: 500000,
+    //      Longitude: 4.3,
+    //      Latitude: 52.1,
+    //      "city-state": "Den Haag",
+    //      index: 280,
+    //      altNames: ["Den Haag", "The Hague"]
+    // }
+    // most of the time, altNames will be equal to [], but some cities are not known by their official, native-language name
+    // for example, The Hague is officially 's-Gravenhage, and Munich is officially München
+    // for each entry in altNames, we will add a new entry with the same object as the value, but with the cleaned alternate name as key
+    // because indices are unique to each individual city, this will not cause the city to be counted twice if the offical name is input
+
     const [citiesData, setCitiesData] = useState();
-    const [citiesDataFile, setCitiesDataFile] = useState();
+
     if (country === "Germany") {
         ctr = [10.5, 51.3];
         sc = 3000;
     } else if (country === "France") {
         ctr = [2.5, 46.5];
         sc = 2500;
+    } else if (country === "Netherlands") {
+        ctr = [5.3, 52.1];
+        sc = 7000;
     }
 
     const mapRef = useRef();
@@ -134,54 +208,45 @@ const Map = ({ country }) => {
     const height = 700;
     const projection = d3
             .geoMercator()
-            .translate([width / 2, 0.5 * height])
+            .translate([width / 2, height / 2])
             .center(ctr)
             .scale(sc);
     const [namedCities, _] = useState(new Set());
     const [nNamed, setNNamed] = useState(0);
     const [cities, setCities] = useState([]);
     const [totalPop, setTotalPop] = useState(0);
-
-    function handleChangeWithFile(e){
-        const val = e.target.value;
-        d3.dsv(";", citiesDataFile, parseCitiesData).then(function (data) {
-            data.forEach((d) => {
-                if(((cleanString(val) === cleanString(d.City)) || 
-                    d.AlternateNames.some((v)=>cleanString(val)===cleanString(v)))
-                     && !namedCities.has(+d.index)) {
-                    e.target.value = "";
-                    handleCityNamed(d["city-state"], d.Population, +d.Longitude, +d.Latitude);
-                    namedCities.add(+d.index);
-                    setTotalPop((prevTotal) => prevTotal + +d.Population);
-                    setNNamed(namedCities.size);
-                    setCities((prevCities) => {
-                        return [{
-                            city: d.City,
-                            pop: +d.Population,
-                            lon: +d.Longitude,
-                            lat: +d.Latitude,
-                            citystate: d["city-state"],
-                            id: +d.index
-                        }, ...prevCities];
-                    }
-                    );
-                }
-            });
-        });
-        // setTotalPop(cities.reduce((acc, city) => acc + city.pop, 0));
-    }
+    const [nOver100k, setNOver100k] = useState(0);
+    const [nOver500k, setNOver500k] = useState(0);
+    const [nOver1m, setNOver1m] = useState(0);
+    const [nCapitals, setNCapitals] = useState(0);
+    const [totalOver100k, setTotalOver100k] = useState(0);
+    const [totalOver500k, setTotalOver500k] = useState(0);
+    const [totalOver1m, setTotalOver1m] = useState(0);
+    const [totalCapitals, setTotalCapitals] = useState(0);
 
     function handleChange(e) {
         const val = e.target.value;
         if (cleanString(val) in citiesData) {
-            const cities = citiesData[cleanString(val)];
-            cities.forEach((d) => {
+            const citiesNamed = citiesData[cleanString(val)];
+            citiesNamed.forEach((d) => {
                 if (!namedCities.has(+d.index)) {
                     e.target.value = "";
-                    handleCityNamed(d["city-state"], d.Population, +d.Longitude, +d.Latitude);
+                    handleCityNamed(d);
                     namedCities.add(+d.index);
                     setTotalPop((prevTotal) => prevTotal + +d.Population);
                     setNNamed(namedCities.size);
+                    if(+d.Population > 100000) {
+                        setNOver100k((prevN) => prevN + 1);
+                    }
+                    if(+d.Population > 500000) {
+                        setNOver500k((prevN) => prevN + 1);
+                    }
+                    if(+d.Population > 1000000) {
+                        setNOver1m((prevN) => prevN + 1);
+                    }
+                    if (d.isStateCapital==='True') {
+                        setNCapitals((prevN) => prevN + 1);
+                    }
                     setCities((prevCities) => {
                         return [{
                             city: d.City,
@@ -195,35 +260,33 @@ const Map = ({ country }) => {
                 }
             });
         }
-        // setTotalPop(cities.reduce((acc, city) => acc + city.pop, 0));
     }
 
-    const handleCityNamed = (citystate, pop, lon, lat) => {
-        // console.log("City named:", citystate, pop, lon, lat);
+    const handleCityNamed = (d) => {
         const svg = d3
             .select(mapRef.current)
             .select("svg");
         const circleScale = d3.scaleSqrt()
-            .domain([1, 5e6])
-            .range([1, 40]);
+            .domain([1, 2e7])
+            .range([1, 80]);
         
         const tooltip = d3
             .select(mapRef.current)
             .select("#tooltip");
 
-        var coords = projection([lon, lat]);
+        var coords = projection([+d.Longitude, +d.Latitude]);
         svg.append("circle")
             .attr("cx", coords[0])
             .attr("cy", coords[1])
-            .attr("r", circleScale(pop))
+            .attr("r", circleScale(+d.Population))
             .attr("fill", "blue")
             .attr("stroke", "black")
             .attr("stroke-width", 1)
             .attr("opacity", 0.5)
-            .on("mouseover", function (event, d) {
+            .on("mouseover", function (event, o) {
                 tooltip
                     .style("opacity", 1)
-                    .html(`${citystate}<br>Population: `+fmt(pop));
+                    .html(`${d["city-state"]}<br>Population: `+fmt(+d.Population));
                 })
                 .on("mouseout", () => {
                 tooltip.style("opacity", 0);
@@ -233,26 +296,26 @@ const Map = ({ country }) => {
     useEffect(() => {
         loadCitiesData(country).then((data) => {
             setCitiesData(data);
-            console.log(data['cherbourg']);
-            console.log(data['cherbourgencotentin']);
+            setTotalOver100k(findTotalOver(data, 100000));
+            setTotalOver500k(findTotalOver(data, 500000));
+            setTotalOver1m(findTotalOver(data, 1000000));
+            setTotalCapitals(countCapitals(data));
             console.log("Cities data loaded for country:", country);
         }
         ).catch((error) => {
             console.error("Error loading the cities data:", error);
         });
-        if (country === "Germany") {
-            setCitiesDataFile("cities-DE.csv");
-        }
-        else if (country === "France") {
-            setCitiesDataFile("cities-FR.csv");
-        } else {
-            console.error("Unsupported country:", country);
-        }
+        
         let mapData;
         if (country === "Germany") {
             mapData = "germany.geojson";
         } else if (country === "France") {
             mapData = "france.geojson";
+        } else if (country === "Netherlands") {
+            mapData = "netherlands.geojson";
+        } else {
+            console.error("Unsupported country:", country);
+            return;
         }
         console.log("Map data loaded for country:", country);
 
@@ -309,9 +372,20 @@ const Map = ({ country }) => {
           {/* <input type="text" value={inputValue} onChange={(e)=>{setInputValue(e.target.value);}}/> */}
           {/* <input type="button" value="Submit" onClick={handleChange} /> */}
           <div ref={mapRef}></div>
-          <p>You have named {nNamed} municipalities with a total population of {fmt(totalPop)}.</p>
-          <div className="cities-list-container">
-            <List items={cities} />
+          <div style={{ width:`${width*1.1}px`, margin:"auto" }}>
+            <p>You have named {nNamed} municipalit{nNamed===1?"y":"ies"} with a total population of {fmt(totalPop)}.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', textAlign: 'left', fontSize: '20px' }}>
+                <div>
+                You have named: 
+                    <ul>
+                        <li>{nOver100k} out of {totalOver100k} over 100,000</li>
+                       {totalOver500k>0 && <li>{nOver500k} out of {totalOver500k} over 500,000</li>}
+                       {totalOver1m>0 && <li>{nOver1m} out of {totalOver1m} over 1 million</li>}
+                       {totalCapitals>0 && <li>{nCapitals} out of {totalCapitals} {adminName(country)} capitals</li>}
+                    </ul>
+                </div>
+                <div className="cities-list-container"><List items={cities} /></div>
+            </div>
           </div>
         </div>
 };

@@ -1,6 +1,6 @@
-index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
+index;State;City;Population;Longitude;Latitude;city-state;AlternateNames;isStateCapital
 0;Schleswig-Holstein;Flensburg;92667;9.43751;54.78252;Flensburg, Schleswig-Holstein
-1;Schleswig-Holstein;Kiel;248873;10.13727;54.321775;Kiel, Schleswig-Holstein
+1;Schleswig-Holstein;Kiel;248873;10.13727;54.321775;Kiel, Schleswig-Holstein;;True
 2;Schleswig-Holstein;Lübeck;219044;10.683932;53.866269;Lübeck, Schleswig-Holstein
 3;Schleswig-Holstein;Neumünster;80185;9.988422;54.069895;Neumünster, Schleswig-Holstein
 4;Schleswig-Holstein;Brunsbüttel;12651;9.13735;53.896932;Brunsbüttel, Schleswig-Holstein
@@ -1104,8 +1104,8 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 1102;Schleswig-Holstein;Rausdorf;231;10.330585;53.589038;Rausdorf, Schleswig-Holstein
 1103;Schleswig-Holstein;Trittau;9167;10.407017;53.609857;Trittau, Schleswig-Holstein
 1104;Schleswig-Holstein;Witzhave;1575;10.337873;53.567605;Witzhave, Schleswig-Holstein
-1105;Hamburg;Hamburg;1910160;9.99697;53.550678;Hamburg, Hamburg
-1106;Niedersachsen;Braunschweig;252066;10.520525;52.26249;Braunschweig, Niedersachsen
+1105;Hamburg;Hamburg;1910160;9.99697;53.550678;Hamburg, Hamburg;;True
+1106;Niedersachsen;Braunschweig;252066;10.520525;52.26249;Braunschweig, Niedersachsen;Brunswick
 1107;Niedersachsen;Salzgitter;105039;10.329208;52.153574;Salzgitter, Niedersachsen
 1108;Niedersachsen;Wolfsburg;127256;10.784975;52.421938;Wolfsburg, Niedersachsen
 1109;Niedersachsen;Gifhorn;43941;10.54687;52.484369;Gifhorn, Niedersachsen
@@ -1280,7 +1280,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 1278;Niedersachsen;Seulingen;1319;10.160868;51.543758;Seulingen, Niedersachsen
 1279;Niedersachsen;Waake;1272;10.056425;51.555296;Waake, Niedersachsen
 1280;Niedersachsen;Harz (Landkreis Göttingen);0;10.388903;51.715579;Harz (Landkreis Göttingen), Niedersachsen
-1281;Niedersachsen;Hannover;548186;9.738084;52.374551;Hannover, Niedersachsen
+1281;Niedersachsen;Hannover;548186;9.738084;52.374551;Hannover, Niedersachsen;Hanover;True
 1282;Niedersachsen;Barsinghausen;34955;9.465004;52.301868;Barsinghausen, Niedersachsen
 1283;Niedersachsen;Burgdorf;31302;10.008766;52.446741;Burgdorf, Niedersachsen
 1284;Niedersachsen;Burgwedel;20481;9.856492;52.49202;Burgwedel, Niedersachsen
@@ -1822,7 +1822,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 1820;Niedersachsen;Thedinghausen;8308;9.02069;52.961967;Thedinghausen, Niedersachsen
 1821;Niedersachsen;Delmenhorst;78979;8.630108;53.049883;Delmenhorst, Niedersachsen
 1822;Niedersachsen;Emden;50659;7.205946;53.370558;Emden, Niedersachsen
-1823;Niedersachsen;Oldenburg (Oldenburg);174629;8.212993;53.140025;Oldenburg (Oldenburg), Niedersachsen
+1823;Niedersachsen;Oldenburg (Oldenburg);174629;8.212993;53.140025;Oldenburg (Oldenburg), Niedersachsen;Oldenburg
 1824;Niedersachsen;Osnabrück;166960;8.04205;52.27692;Osnabrück, Niedersachsen
 1825;Niedersachsen;Wilhelmshaven;76247;8.111156;53.520302;Wilhelmshaven, Niedersachsen
 1826;Niedersachsen;Apen;12359;7.80595;53.218179;Apen, Niedersachsen
@@ -2069,9 +2069,9 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 2067;Niedersachsen;Schweindorf;738;7.474601;53.600919;Schweindorf, Niedersachsen
 2068;Niedersachsen;Utarp;643;7.483348;53.611076;Utarp, Niedersachsen
 2069;Niedersachsen;Westerholt;2722;7.457856;53.590175;Westerholt, Niedersachsen
-2070;Bremen;Bremen;577026;8.809338;53.075606;Bremen, Bremen
+2070;Bremen;Bremen;577026;8.809338;53.075606;Bremen, Bremen;;True
 2071;Bremen;Bremerhaven;114677;8.578068;53.543032;Bremerhaven, Bremen
-2072;Nordrhein-Westfalen;Düsseldorf;631217;6.780068;51.22422;Düsseldorf, Nordrhein-Westfalen
+2072;Nordrhein-Westfalen;Düsseldorf;631217;6.780068;51.22422;Düsseldorf, Nordrhein-Westfalen;;True
 2073;Nordrhein-Westfalen;Duisburg;503707;6.765477;51.433259;Duisburg, Nordrhein-Westfalen
 2074;Nordrhein-Westfalen;Essen;586608;7.012583;51.455843;Essen, Nordrhein-Westfalen
 2075;Nordrhein-Westfalen;Krefeld;228550;6.56089;51.332637;Krefeld, Nordrhein-Westfalen
@@ -2138,7 +2138,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 2136;Nordrhein-Westfalen;Wesel;61277;6.617306;51.65733;Wesel, Nordrhein-Westfalen
 2137;Nordrhein-Westfalen;Xanten;21776;6.453197;51.662258;Xanten, Nordrhein-Westfalen
 2138;Nordrhein-Westfalen;Bonn;335789;7.099187;50.734245;Bonn, Nordrhein-Westfalen
-2139;Nordrhein-Westfalen;Köln;1087353;6.957068;50.938107;Köln, Nordrhein-Westfalen
+2139;Nordrhein-Westfalen;Köln;1087353;6.957068;50.938107;Köln, Nordrhein-Westfalen;Cologne
 2140;Nordrhein-Westfalen;Leverkusen;166414;6.979767;51.03245;Leverkusen, Nordrhein-Westfalen
 2141;Nordrhein-Westfalen;Aachen;252769;6.0848;50.773516;Aachen, Nordrhein-Westfalen
 2142;Nordrhein-Westfalen;Alsdorf;48518;6.161607;50.874052;Alsdorf, Nordrhein-Westfalen
@@ -2468,7 +2468,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 2466;Hessen;Darmstadt;164792;8.653838;49.872238;Darmstadt, Hessen
 2467;Hessen;Frankfurt am Main;775790;8.682433;50.11088;Frankfurt am Main, Hessen;Frankfurt
 2468;Hessen;Offenbach am Main;135490;8.764442;50.105567;Offenbach am Main, Hessen
-2469;Hessen;Wiesbaden;285522;8.239138;50.081698;Wiesbaden, Hessen
+2469;Hessen;Wiesbaden;285522;8.239138;50.081698;Wiesbaden, Hessen;;True
 2470;Hessen;Abtsteinach;2472;8.786237;49.544051;Abtsteinach, Hessen
 2471;Hessen;Bensheim;41758;8.622171;49.680002;Bensheim, Hessen
 2472;Hessen;Biblis;9145;8.450353;49.683253;Biblis, Hessen
@@ -4560,7 +4560,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 4558;Rheinland-Pfalz;Kaiserslautern;101486;7.768864;49.445456;Kaiserslautern, Rheinland-Pfalz
 4559;Rheinland-Pfalz;Landau in der Pfalz;48341;8.112414;49.196595;Landau in der Pfalz, Rheinland-Pfalz
 4560;Rheinland-Pfalz;Ludwigshafen am Rhein;176110;8.447899;49.483235;Ludwigshafen am Rhein, Rheinland-Pfalz
-4561;Rheinland-Pfalz;Mainz;222889;8.271855;50.001959;Mainz, Rheinland-Pfalz
+4561;Rheinland-Pfalz;Mainz;222889;8.271855;50.001959;Mainz, Rheinland-Pfalz;;True
 4562;Rheinland-Pfalz;Neustadt an der Weinstraße;53920;8.140755;49.351983;Neustadt an der Weinstraße, Rheinland-Pfalz
 4563;Rheinland-Pfalz;Pirmasens;40941;7.606009;49.19945;Pirmasens, Rheinland-Pfalz
 4564;Rheinland-Pfalz;Speyer;51203;8.436572;49.316172;Speyer, Rheinland-Pfalz
@@ -5191,7 +5191,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 5189;Rheinland-Pfalz;Schmitshausen;406;7.511618;49.307094;Schmitshausen, Rheinland-Pfalz
 5190;Rheinland-Pfalz;Wallhalben;859;7.524156;49.316276;Wallhalben, Rheinland-Pfalz
 5191;Rheinland-Pfalz;Winterbach (Pfalz);517;7.474195;49.303332;Winterbach (Pfalz), Rheinland-Pfalz
-5192;Baden-Württemberg;Stuttgart;633484;9.177734;48.775817;Stuttgart, Baden-Württemberg
+5192;Baden-Württemberg;Stuttgart;633484;9.177734;48.775817;Stuttgart, Baden-Württemberg;;True
 5193;Baden-Württemberg;Böblingen;52093;9.009663;48.685296;Böblingen, Baden-Württemberg
 5194;Baden-Württemberg;Leonberg;49845;9.016776;48.800497;Leonberg, Baden-Württemberg
 5195;Baden-Württemberg;Magstadt;9807;8.962269;48.742432;Magstadt, Baden-Württemberg
@@ -6295,7 +6295,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 6293;Baden-Württemberg;Schwenningen;1681;8.997429;48.10473;Schwenningen, Baden-Württemberg
 6294;Baden-Württemberg;Stetten am kalten Markt;4884;9.077554;48.121999;Stetten am kalten Markt, Baden-Württemberg
 6295;Bayern;Ingolstadt;142308;11.423387;48.76542;Ingolstadt, Bayern
-6296;Bayern;München;1510378;11.575997;48.137683;München, Bayern;Munich
+6296;Bayern;München;1510378;11.575997;48.137683;München, Bayern;Munich;True
 6297;Bayern;Rosenheim;65192;12.128932;47.856358;Rosenheim, Bayern
 6298;Bayern;Altötting;13172;12.67892;48.227986;Altötting, Bayern
 6299;Bayern;Burghausen;19494;12.831282;48.168825;Burghausen, Bayern
@@ -8521,7 +8521,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 8519;Bayern;Missen-Wilhams;1540;10.12767;47.597616;Missen-Wilhams, Bayern
 8520;Bayern;Weitnau;5514;10.126481;47.640846;Weitnau, Bayern
 8521;Bayern;Kempter Wald;0;10.441791;47.709854;Kempter Wald, Bayern
-8522;Saarland;Saarbrücken;183509;6.995542;49.236608;Saarbrücken, Saarland
+8522;Saarland;Saarbrücken;183509;6.995542;49.236608;Saarbrücken, Saarland;;True
 8523;Saarland;Friedrichsthal;9887;7.09686;49.32234;Friedrichsthal, Saarland
 8524;Saarland;Großrosseln;7891;6.839853;49.205999;Großrosseln, Saarland
 8525;Saarland;Heusweiler;18158;6.928681;49.338578;Heusweiler, Saarland
@@ -8573,11 +8573,11 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 8571;Saarland;Oberthal;6008;7.089249;49.511195;Oberthal, Saarland
 8572;Saarland;St. Wendel;25503;7.173032;49.468359;St. Wendel, Saarland
 8573;Saarland;Tholey;12186;7.037625;49.483965;Tholey, Saarland
-8574;Berlin;Berlin;3782202;13.405538;52.51767;Berlin, Berlin
+8574;Berlin;Berlin;3782202;13.405538;52.51767;Berlin, Berlin;;True
 8575;Brandenburg;Brandenburg an der Havel;73921;12.563364;52.408651;Brandenburg an der Havel, Brandenburg
 8576;Brandenburg;Cottbus/Chóśebuz;100010;14.335117;51.759345;Cottbus/Chóśebuz, Brandenburg
 8577;Brandenburg;Frankfurt (Oder);58818;14.551151;52.344651;Frankfurt (Oder), Brandenburg
-8578;Brandenburg;Potsdam;187119;13.05358;52.400355;Potsdam, Brandenburg
+8578;Brandenburg;Potsdam;187119;13.05358;52.400355;Potsdam, Brandenburg;;True
 8579;Brandenburg;Ahrensfelde;14144;13.57961;52.576115;Ahrensfelde, Brandenburg
 8580;Brandenburg;Bernau bei Berlin;44254;13.587912;52.678368;Bernau bei Berlin, Brandenburg
 8581;Brandenburg;Eberswalde;41704;13.820369;52.834577;Eberswalde, Brandenburg
@@ -8988,7 +8988,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 8986;Brandenburg;Uckerfelde;940;13.983346;53.237783;Uckerfelde, Brandenburg
 8987;Brandenburg;Zichow;516;14.038335;53.190169;Zichow, Brandenburg
 8988;Mecklenburg-Vorpommern;Rostock;210795;12.135993;54.088548;Rostock, Mecklenburg-Vorpommern
-8989;Mecklenburg-Vorpommern;Schwerin;98733;11.414434;53.628545;Schwerin, Mecklenburg-Vorpommern
+8989;Mecklenburg-Vorpommern;Schwerin;98733;11.414434;53.628545;Schwerin, Mecklenburg-Vorpommern;;True
 8990;Mecklenburg-Vorpommern;Dargun;4318;12.853692;53.898212;Dargun, Mecklenburg-Vorpommern
 8991;Mecklenburg-Vorpommern;Demmin;10293;13.038196;53.905543;Demmin, Mecklenburg-Vorpommern
 8992;Mecklenburg-Vorpommern;Feldberger Seenlandschaft;4460;13.439741;53.335556;Feldberger Seenlandschaft, Mecklenburg-Vorpommern
@@ -9893,7 +9893,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 9891;Sachsen;Oberwiera;1019;12.536763;50.892077;Oberwiera, Sachsen
 9892;Sachsen;Remse;1612;12.567813;50.854562;Remse, Sachsen
 9893;Sachsen;Waldenburg;3923;12.602857;50.874527;Waldenburg, Sachsen
-9894;Sachsen;Dresden;566222;13.736883;51.051697;Dresden, Sachsen
+9894;Sachsen;Dresden;566222;13.736883;51.051697;Dresden, Sachsen;;True
 9895;Sachsen;Arnsdorf;5140;13.992798;51.097715;Arnsdorf, Sachsen
 9896;Sachsen;Bautzen / Budyšin;38039;14.427688;51.180868;Bautzen / Budyšin, Sachsen
 9897;Sachsen;Bernsdorf;6257;14.0695;51.376325;Bernsdorf, Sachsen
@@ -10131,7 +10131,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 10129;Sachsen;Zschepplin;2898;12.603693;51.501903;Zschepplin, Sachsen
 10130;Sachsen-Anhalt;Dessau-Roßlau;79686;12.245715;51.834703;Dessau-Roßlau, Sachsen-Anhalt
 10131;Sachsen-Anhalt;Halle (Saale);242172;11.970666;51.482478;Halle (Saale), Sachsen-Anhalt
-10132;Sachsen-Anhalt;Magdeburg;240114;11.632726;52.126248;Magdeburg, Sachsen-Anhalt
+10132;Sachsen-Anhalt;Magdeburg;240114;11.632726;52.126248;Magdeburg, Sachsen-Anhalt;;True
 10133;Sachsen-Anhalt;Arendsee (Altmark);6666;11.489149;52.881825;Arendsee (Altmark), Sachsen-Anhalt
 10134;Sachsen-Anhalt;Gardelegen;21926;11.394214;52.524469;Gardelegen, Sachsen-Anhalt
 10135;Sachsen-Anhalt;Kalbe (Milde);7348;11.389156;52.656091;Kalbe (Milde), Sachsen-Anhalt
@@ -10347,7 +10347,7 @@ index;State;City;Population;Longitude;Latitude;city-state;AlternateNames
 10345;Sachsen-Anhalt;Oranienbaum-Wörlitz;8065;12.404739;51.79801;Oranienbaum-Wörlitz, Sachsen-Anhalt
 10346;Sachsen-Anhalt;Wittenberg;45588;12.645554;51.867003;Wittenberg, Sachsen-Anhalt
 10347;Sachsen-Anhalt;Zahna-Elster;9044;12.829442;51.829561;Zahna-Elster, Sachsen-Anhalt
-10348;Thüringen;Erfurt;215675;11.027236;50.977122;Erfurt, Thüringen
+10348;Thüringen;Erfurt;215675;11.027236;50.977122;Erfurt, Thüringen;;True
 10349;Thüringen;Gera;94847;12.080429;50.876147;Gera, Thüringen
 10350;Thüringen;Jena;110791;11.591842;50.93006;Jena, Thüringen
 10351;Thüringen;Suhl;36986;10.68693;50.609536;Suhl, Thüringen
