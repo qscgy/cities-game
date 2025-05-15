@@ -49,6 +49,15 @@ function cleanStringGenerator(country) {
                 .replace(/-/g, " ")
                 .replace(/\s*/g, "");
         };
+    } else if (country==='Sweden'){
+        return function (str) {
+            return str
+                .toLowerCase()
+                .replace(/å/g, "a")
+                .replace(/ä/g, "a")
+                .replace(/ö/g, "o")
+                .replace(/\s*/g, "");
+        }
     } else {
         return function (str) {
             return str
@@ -107,7 +116,7 @@ const parseCitiesData = (d) => {
         Longitude: +d.Longitude,
         Latitude: +d.Latitude,
         "city-state": d["city-state"],
-        index: +d.index,
+        index: d.index,
         altNames: altNames,
         isStateCapital: d.isStateCapital
     };
@@ -121,6 +130,8 @@ const adminName = (country) => {
         return 'state';
     } else if (country==='Netherlands'){
         return 'provincial';
+    } else if (country==='Sweden'){
+        return 'county';
     }
 }
 
@@ -133,6 +144,8 @@ const loadCitiesData = (country) => {
         return data;
     } else if (country === "Netherlands") {
         return d3.dsv(";", "cities-NL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    } else if (country === "Sweden") {
+        return d3.dsv(";", "cities-SE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     }
     throw new Error(`Unsupported country: ${country}`);
 };
@@ -201,6 +214,9 @@ const Map = ({ country }) => {
     } else if (country === "Netherlands") {
         ctr = [5.3, 52.1];
         sc = 7000;
+    } else if (country === "Sweden") {
+        ctr = [18.64, 62.8];
+        sc = 1200;
     }
 
     const mapRef = useRef();
@@ -229,10 +245,10 @@ const Map = ({ country }) => {
         if (cleanString(val) in citiesData) {
             const citiesNamed = citiesData[cleanString(val)];
             citiesNamed.forEach((d) => {
-                if (!namedCities.has(+d.index)) {
+                if (!namedCities.has(d.index)) {
                     e.target.value = "";
                     handleCityNamed(d);
-                    namedCities.add(+d.index);
+                    namedCities.add(d.index);
                     setTotalPop((prevTotal) => prevTotal + +d.Population);
                     setNNamed(namedCities.size);
                     if(+d.Population > 100000) {
@@ -254,7 +270,7 @@ const Map = ({ country }) => {
                             lon: +d.Longitude,
                             lat: +d.Latitude,
                             citystate: d["city-state"],
-                            id: +d.index
+                            id: d.index
                         }, ...prevCities];
                     });
                 }
@@ -313,6 +329,8 @@ const Map = ({ country }) => {
             mapData = "france.geojson";
         } else if (country === "Netherlands") {
             mapData = "netherlands.geojson";
+        } else if (country === "Sweden") {
+            mapData = "sweden.geojson";
         } else {
             console.error("Unsupported country:", country);
             return;
@@ -367,13 +385,13 @@ const Map = ({ country }) => {
     }, [country]);
 
     return <div className="App">
-          <h1>City Test</h1>
+          <h1>How many cities can you name?</h1>
           <input type="text" className="main-input" onChange={handleChange}/>
           {/* <input type="text" value={inputValue} onChange={(e)=>{setInputValue(e.target.value);}}/> */}
           {/* <input type="button" value="Submit" onClick={handleChange} /> */}
           <div ref={mapRef}></div>
           <div style={{ width:`${width*1.1}px`, margin:"auto" }}>
-            <p>You have named {nNamed} municipalit{nNamed===1?"y":"ies"} with a total population of {fmt(totalPop)}.</p>
+            <p>You have named {nNamed} cit{nNamed===1?"y":"ies"} with a total population of {fmt(totalPop)}.</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', textAlign: 'left', fontSize: '20px' }}>
                 <div>
                 You have named: 

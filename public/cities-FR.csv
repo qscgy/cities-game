@@ -1,4 +1,4 @@
-index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
+index;City;State;city-state;Latitude;Longitude;Population;AlternateNames;isStateCapital
 02655;Ronchères;Hauts-de-France;Ronchères, Hauts-de-France;49.139269302848284;3.6021568523595784;146
 02674;Saint-Clément;Hauts-de-France;Saint-Clément, Hauts-de-France;49.77481313413916;4.072918707174833;49
 02680;Saint-Gobain;Hauts-de-France;Saint-Gobain, Hauts-de-France;49.595410398372955;3.3929901717309763;2304
@@ -226,7 +226,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 29268;Saint-Thonan;Bretagne;Saint-Thonan, Bretagne;48.47710340265056;-4.322690068512908;1916
 29287;Tréflez;Bretagne;Tréflez, Bretagne;48.62648279999985;-4.257296614894699;975
 2A001;Afa;Corse;Afa, Corse;41.984100294167064;8.79838228145443;3277
-2A004;Ajaccio;Corse;Ajaccio, Corse;41.934720415623254;8.700946037678056;72647
+2A004;Ajaccio;Corse;Ajaccio, Corse;41.934720415623254;8.700946037678056;72647;;True
 2A070;Casaglione;Corse;Casaglione, Corse;42.069544946746504;8.760359815477265;384
 2A266;Salice;Corse;Salice, Corse;42.10468728623433;8.9023097728977;89
 2A331;Urbalacone;Corse;Urbalacone, Corse;41.82662311123288;8.948909139065625;59
@@ -3406,7 +3406,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 35142;Landéan;Bretagne;Landéan, Bretagne;48.41311522054373;-1.147800027000854;1176
 35173;Melesse;Bretagne;Melesse, Bretagne;48.2193610307846;-1.6895816794364977;7111
 35185;Montautour;Bretagne;Montautour, Bretagne;48.20467461202798;-1.120846454357211;267
-35238;Rennes;Bretagne;Rennes, Bretagne;48.11167956598057;-1.6818689569630096;222485
+35238;Rennes;Bretagne;Rennes, Bretagne;48.11167956598057;-1.6818689569630096;222485;;True
 35266;Saint-Erblon;Bretagne;Saint-Erblon, Bretagne;48.01891266239769;-1.6426008975608934;3428
 35270;Saint-Georges-de-Gréhaigne;Bretagne;Saint-Georges-de-Gréhaigne, Bretagne;48.57880347452856;-1.5496475224829838;371
 35273;Saint-Germain-en-Coglès;Bretagne;Saint-Germain-en-Coglès, Bretagne;48.397526117226775;-1.2648445438594238;2071
@@ -4421,7 +4421,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 59281;Hantay;Hauts-de-France;Hantay, Hauts-de-France;50.537970464146056;2.868537437615747;1269
 59297;Hélesmes;Hauts-de-France;Hélesmes, Hauts-de-France;50.36780461625268;3.358398187000958;1937
 59329;Lambres-lez-Douai;Hauts-de-France;Lambres-lez-Douai, Hauts-de-France;50.35435084688463;3.054330615622395;4953
-59350;Lille;Hauts-de-France;Lille, Hauts-de-France;50.631855690998854;3.0469869441504702;236234
+59350;Lille;Hauts-de-France;Lille, Hauts-de-France;50.631855690998854;3.0469869441504702;236234;;True
 59436;Noordpeene;Hauts-de-France;Noordpeene, Hauts-de-France;50.7945646533856;2.3668145521075616;787
 59437;Noyelles-lès-Seclin;Hauts-de-France;Noyelles-lès-Seclin, Hauts-de-France;50.573023196128844;3.0225600381561386;852
 59462;Phalempin;Hauts-de-France;Phalempin, Hauts-de-France;50.51341059078376;3.0224520332371894;4834
@@ -6859,7 +6859,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 86083;Coulombiers;Nouvelle-Aquitaine;Coulombiers, Nouvelle-Aquitaine;46.4938081618323;0.17335618028164984;1131
 86138;Luchapt;Nouvelle-Aquitaine;Luchapt, Nouvelle-Aquitaine;46.18248100127168;0.7713432300180926;251
 86167;Monts-sur-Guesnes;Nouvelle-Aquitaine;Monts-sur-Guesnes, Nouvelle-Aquitaine;46.9127179351716;0.19306558653380781;916
-67482;Strasbourg;Grand Est;Strasbourg, Grand Est;48.571265912100024;7.767759191834598;290576
+67482;Strasbourg;Grand Est;Strasbourg, Grand Est;48.571265912100024;7.767759191834598;290576;;True
 67547;Wittisheim;Grand Est;Wittisheim, Grand Est;48.26273790012922;7.591258877370095;2067
 68035;Biederthal;Grand Est;Biederthal, Grand Est;47.4711028071778;7.436603494548754;325
 68037;Biltzheim;Grand Est;Biltzheim, Grand Est;47.9624406133588;7.369697193453615;478
@@ -7980,7 +7980,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 33013;Artigues-près-Bordeaux;Nouvelle-Aquitaine;Artigues-près-Bordeaux, Nouvelle-Aquitaine;44.86025737406014;-0.4902112545550625;8663
 33014;Les Artigues-de-Lussac;Nouvelle-Aquitaine;Les Artigues-de-Lussac, Nouvelle-Aquitaine;44.97253790480704;-0.14037399894594269;1111
 33023;Ayguemorte-les-Graves;Nouvelle-Aquitaine;Ayguemorte-les-Graves, Nouvelle-Aquitaine;44.702793664597756;-0.4836908437925019;1357
-33063;Bordeaux;Nouvelle-Aquitaine;Bordeaux, Nouvelle-Aquitaine;44.85759206851355;-0.573364535133515;259809
+33063;Bordeaux;Nouvelle-Aquitaine;Bordeaux, Nouvelle-Aquitaine;44.85759206851355;-0.573364535133515;259809;;True
 33072;Brannens;Nouvelle-Aquitaine;Brannens, Nouvelle-Aquitaine;44.52240265939914;-0.1527114093028302;239
 33083;Camarsac;Nouvelle-Aquitaine;Camarsac, Nouvelle-Aquitaine;44.825991013148546;-0.3687775518747867;1025
 33149;Daubèze;Nouvelle-Aquitaine;Daubèze, Nouvelle-Aquitaine;44.71076853150877;-0.13383519299590285;155
@@ -8999,7 +8999,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 74253;Saint-Sixt;Auvergne-Rhône-Alpes;Saint-Sixt, Auvergne-Rhône-Alpes;46.04158084121709;6.322819322862411;1017
 74278;Thyez;Auvergne-Rhône-Alpes;Thyez, Auvergne-Rhône-Alpes;46.088205598911216;6.536475794497632;6419
 74303;Villaz;Auvergne-Rhône-Alpes;Villaz, Auvergne-Rhône-Alpes;45.95306936108332;6.201368173917152;3348
-75056;Paris;Île-de-France;Paris, Île-de-France;48.85661329124928;2.342919509823842;2145906
+75056;Paris;Île-de-France;Paris, Île-de-France;48.85661329124928;2.342919509823842;2145906;;True
 76043;Auzebosc;Normandie;Auzebosc, Normandie;49.60128162455443;0.7331734871985517;1138
 76048;Avesnes-en-Bray;Normandie;Avesnes-en-Bray, Normandie;49.47295620661008;1.6759584242649788;291
 76056;Bardouville;Normandie;Bardouville, Normandie;49.43327419620922;0.9236607709492645;622
@@ -9955,7 +9955,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 59122;Cambrai;Hauts-de-France;Cambrai, Hauts-de-France;50.170291303758816;3.242130811726898;31559
 59155;Coudekerque-Branche;Hauts-de-France;Coudekerque-Branche, Hauts-de-France;51.01783778887408;2.3948819259571175;20708
 59164;Croix-Caluyau;Hauts-de-France;Croix-Caluyau, Hauts-de-France;50.152054057801436;3.5851492097229336;244
-59183;Dunkerque;Hauts-de-France;Dunkerque, Hauts-de-France;51.03010698351919;2.3366911871453975;86545
+59183;Dunkerque;Hauts-de-France;Dunkerque, Hauts-de-France;51.03010698351919;2.3366911871453975;86545;Dunkirk
 59186;Eccles;Hauts-de-France;Eccles, Hauts-de-France;50.198418055414514;4.097582824086213;84
 59224;Féchain;Hauts-de-France;Féchain, Hauts-de-France;50.26877832434876;3.2120423472655606;1675
 59278;Hallennes-lez-Haubourdin;Hauts-de-France;Hallennes-lez-Haubourdin, Hauts-de-France;50.611919956208155;2.954695133382952;4697
@@ -10078,7 +10078,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 31357;Montastruc-de-Salies;Occitanie;Montastruc-de-Salies, Occitanie;43.03807655270202;0.9015444939854982;310
 31406;Palaminy;Occitanie;Palaminy, Occitanie;43.19458808114737;1.0604645423156227;814
 31485;Saint-Germier;Occitanie;Saint-Germier, Occitanie;43.46829874694199;1.726117977249283;118
-31555;Toulouse;Occitanie;Toulouse, Occitanie;43.596038699727075;1.4320948653758485;498003
+31555;Toulouse;Occitanie;Toulouse, Occitanie;43.596038699727075;1.4320948653758485;498003;;True
 31571;Vendine;Occitanie;Vendine, Occitanie;43.590605526274025;1.7657080545861232;290
 31588;Villeneuve-Tolosane;Occitanie;Villeneuve-Tolosane, Occitanie;43.526146971044845;1.3468311811959224;10112
 32017;Aurensan;Occitanie;Aurensan, Occitanie;43.62035705894044;-0.20211543129671197;133
@@ -14041,7 +14041,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 44074;Indre;Pays de la Loire;Indre, Pays de la Loire;47.198521885425116;-1.6711567743600908;4087
 44087;Machecoul-Saint-Même;Pays de la Loire;Machecoul-Saint-Même, Pays de la Loire;46.99981096855695;-1.8183634745749466;7626
 44098;Missillac;Pays de la Loire;Missillac, Pays de la Loire;47.4880670073369;-2.1778406548623317;5432
-44109;Nantes;Pays de la Loire;Nantes, Pays de la Loire;47.232043562789876;-1.5482064266993227;320732
+44109;Nantes;Pays de la Loire;Nantes, Pays de la Loire;47.232043562789876;-1.5482064266993227;320732;;True
 44113;Nozay;Pays de la Loire;Nozay, Pays de la Loire;47.57299764309059;-1.600634243240703;4216
 44115;Oudon;Pays de la Loire;Oudon, Pays de la Loire;47.35563044226998;-1.2721429581428723;3936
 45049;Bouzy-la-Forêt;Centre-Val de Loire;Bouzy-la-Forêt, Centre-Val de Loire;47.8655138384092;2.367624751048303;1216
@@ -25809,7 +25809,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 45137;Escrennes;Centre-Val de Loire;Escrennes, Centre-Val de Loire;48.136648533129865;2.184581789430249;726
 45203;Meung-sur-Loire;Centre-Val de Loire;Meung-sur-Loire, Centre-Val de Loire;47.83959411020093;1.697744647905974;6567
 45218;Le Moulinet-sur-Solin;Centre-Val de Loire;Le Moulinet-sur-Solin, Centre-Val de Loire;47.817081813027116;2.610508447161324;112
-45234;Orléans;Centre-Val de Loire;Orléans, Centre-Val de Loire;47.8822880600356;1.9165950546583639;117026
+45234;Orléans;Centre-Val de Loire;Orléans, Centre-Val de Loire;47.8822880600356;1.9165950546583639;117026;;True
 45251;Pierrefitte-ès-Bois;Centre-Val de Loire;Pierrefitte-ès-Bois, Centre-Val de Loire;47.511416140242744;2.691857117829468;306
 45272;Saint-Cyr-en-Val;Centre-Val de Loire;Saint-Cyr-en-Val, Centre-Val de Loire;47.81433217469086;1.9597826197776727;3313
 45332;Varennes-Changy;Centre-Val de Loire;Varennes-Changy, Centre-Val de Loire;47.86234705159406;2.6636492222117085;1492
@@ -30726,7 +30726,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 76487;Osmoy-Saint-Valery;Normandie;Osmoy-Saint-Valery, Normandie;49.79741633482553;1.3037158498127428;315
 76489;Oudalle;Normandie;Oudalle, Normandie;49.48798043121876;0.28268952622083443;441
 76512;Puisenval;Normandie;Puisenval, Normandie;49.878861058119035;1.4617519708950548;23
-76540;Rouen;Normandie;Rouen, Normandie;49.441495409008105;1.0935731462313265;114187
+76540;Rouen;Normandie;Rouen, Normandie;49.441495409008105;1.0935731462313265;114187;;True
 76598;Saint-Léger-aux-Bois;Normandie;Saint-Léger-aux-Bois, Normandie;49.829834223765886;1.6119192458309994;485
 76638;Saint-Pierre-en-Val;Normandie;Saint-Pierre-en-Val, Normandie;50.01133914911024;1.440551015031424;1087
 76649;Saint-Saire;Normandie;Saint-Saire, Normandie;49.68157828491017;1.48108785091187;579
@@ -32244,7 +32244,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 21153;Châtellenot;Bourgogne-Franche-Comté;Châtellenot, Bourgogne-Franche-Comté;47.23753734125796;4.487784076834896;155
 21182;Collonges-lès-Bévy;Bourgogne-Franche-Comté;Collonges-lès-Bévy, Bourgogne-Franche-Comté;47.17137657914538;4.837137080426577;95
 21229;Diancey;Bourgogne-Franche-Comté;Diancey, Bourgogne-Franche-Comté;47.17463741354203;4.36718444291105;95
-21231;Dijon;Bourgogne-Franche-Comté;Dijon, Bourgogne-Franche-Comté;47.32285079983115;5.037467679545664;159106
+21231;Dijon;Bourgogne-Franche-Comté;Dijon, Bourgogne-Franche-Comté;47.32285079983115;5.037467679545664;159106;;True
 21256;Étevaux;Bourgogne-Franche-Comté;Étevaux, Bourgogne-Franche-Comté;47.32300571715237;5.322057689092144;314
 21276;Fontaines-en-Duesmois;Bourgogne-Franche-Comté;Fontaines-en-Duesmois, Bourgogne-Franche-Comté;47.64950959117719;4.534893035038189;117
 21284;Francheville;Bourgogne-Franche-Comté;Francheville, Bourgogne-Franche-Comté;47.459082782159335;4.879277316894802;280
@@ -32762,7 +32762,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 68355;Waldighofen;Grand Est;Waldighofen, Grand Est;47.5482333919279;7.316802415802129;1544
 68366;Wickerschwihr;Grand Est;Wickerschwihr, Grand Est;48.1110357473585;7.4401775484700385;697
 69012;Les Ardillats;Auvergne-Rhône-Alpes;Les Ardillats, Auvergne-Rhône-Alpes;46.18924030862436;4.53678826905872;606
-69123;Lyon;Auvergne-Rhône-Alpes;Lyon, Auvergne-Rhône-Alpes;45.75491564321558;4.836343758533197;522228
+69123;Lyon;Auvergne-Rhône-Alpes;Lyon, Auvergne-Rhône-Alpes;45.75491564321558;4.836343758533197;522228;;True
 69137;Montmelas-Saint-Sorlin;Auvergne-Rhône-Alpes;Montmelas-Saint-Sorlin, Auvergne-Rhône-Alpes;46.01802585173341;4.601864089283;534
 69176;Soucieu-en-Jarrest;Auvergne-Rhône-Alpes;Soucieu-en-Jarrest, Auvergne-Rhône-Alpes;45.677056587248025;4.692012445170996;4613
 69266;Villeurbanne;Auvergne-Rhône-Alpes;Villeurbanne, Auvergne-Rhône-Alpes;45.77100071658441;4.889066622044655;154781
@@ -33255,7 +33255,7 @@ index;City;State;city-state;Latitude;Longitude;Population;AlternateNames
 12198;Rieupeyroux;Occitanie;Rieupeyroux, Occitanie;44.308111573999504;2.2293822262138474;1940
 12270;Sévérac d'Aveyron;Occitanie;Sévérac d'Aveyron, Occitanie;44.318427671228896;3.0420065469476323;4079
 12298;Villecomtal;Occitanie;Villecomtal, Occitanie;44.54350323666598;2.5759343886028176;417
-13055;Marseille;Provence-Alpes-Côte d'Azur;Marseille, Provence-Alpes-Côte d'Azur;43.29172386417499;5.420424066732189;870321
+13055;Marseille;Provence-Alpes-Côte d'Azur;Marseille, Provence-Alpes-Côte d'Azur;43.29172386417499;5.420424066732189;870321;;True
 13072;Peynier;Provence-Alpes-Côte d'Azur;Peynier, Provence-Alpes-Côte d'Azur;43.43975310588705;5.625452845506746;3567
 13084;La Roque-d'Anthéron;Provence-Alpes-Côte d'Azur;La Roque-d'Anthéron, Provence-Alpes-Côte d'Azur;43.71758502451282;5.301422337567681;5411
 14064;Bernières-d'Ailly;Normandie;Bernières-d'Ailly, Normandie;48.94724679939872;-0.10260106439380971;221

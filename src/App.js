@@ -3,7 +3,7 @@ import './App.css';
 import Map from "./components/Map";
 
 function App() {
-  const [currentCountry, setCurrentCountry] = useState("Netherlands");
+  const [currentCountry, setCurrentCountry] = useState("Sweden");
 
   const handleCountryChange = (country) => {
     console.log("Country changed to:", country);
@@ -16,6 +16,7 @@ function App() {
       <button onClick={() => (handleCountryChange("France"))}>France</button>
       <button onClick={() => (handleCountryChange("Germany"))}>Germany</button>
       <button onClick={() => (handleCountryChange("Netherlands"))}>Netherlands</button>
+      <button onClick={() => (handleCountryChange("Sweden"))}>Sweden</button>
       <Map country={currentCountry} key={`map-${currentCountry}`} />
     </div>
   );
