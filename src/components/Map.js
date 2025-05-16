@@ -58,12 +58,36 @@ function cleanStringGenerator(country) {
                 .replace(/ö/g, "o")
                 .replace(/\s*/g, "");
         }
-    } else {
+    } else if (country==="Netherlands") {
         return function (str) {
             return str
                 .toLowerCase()
                 .replace(/'/g, "")
                 .replace(/-/g, " ")
+                .replace(/ú/g, "u")
+                .replace(/â/g, "a")
+                .replace(/\s*/g, "");
+        }
+    } else if (country==="Italy") {
+        return function (str) {
+            return str
+                .toLowerCase()
+                .replace(/\(/g, "")
+                .replace(/\)/g, "")
+                .replace(/ü/g, "u")
+                .replace(/ö/g, "o")
+                .replace(/ß/g, "ss")
+                .replace(/ä/g, "a")
+                .replace(/é/g, "e")
+                .replace(/ê/g, "e")
+                .replace(/á/g, "a")
+                .replace(/ó/g, "o")
+                .replace(/à/g, "a")
+                .replace(/è/g, "e")
+                .replace(/ì/g, "i")
+                .replace(/ò/g, "o")
+                .replace(/ù/g, "u")
+                .replace(/î/g, "i")
                 .replace(/\s*/g, "");
         }
     }
@@ -132,6 +156,8 @@ const adminName = (country) => {
         return 'provincial';
     } else if (country==='Sweden'){
         return 'county';
+    } else if (country==="Italy") {
+        return 'regional';
     }
 }
 
@@ -146,6 +172,8 @@ const loadCitiesData = (country) => {
         return d3.dsv(";", "cities-NL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     } else if (country === "Sweden") {
         return d3.dsv(";", "cities-SE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    } else if (country === "Italy") {
+        return d3.dsv(";", "cities-IT.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     }
     throw new Error(`Unsupported country: ${country}`);
 };
@@ -217,6 +245,9 @@ const Map = ({ country }) => {
     } else if (country === "Sweden") {
         ctr = [18.64, 62.8];
         sc = 1200;
+    } else if (country === "Italy") {
+        ctr = [12.57, 41.87];
+        sc = 2500;
     }
 
     const mapRef = useRef();
@@ -302,7 +333,7 @@ const Map = ({ country }) => {
             .on("mouseover", function (event, o) {
                 tooltip
                     .style("opacity", 1)
-                    .html(`${d["city-state"]}<br>Population: `+fmt(+d.Population));
+                    .html(`${d["city-state"]}${d.isStateCapital==='True'?" 🔴":""}<br>Population: `+fmt(+d.Population));
                 })
                 .on("mouseout", () => {
                 tooltip.style("opacity", 0);
@@ -331,7 +362,10 @@ const Map = ({ country }) => {
             mapData = "netherlands.geojson";
         } else if (country === "Sweden") {
             mapData = "sweden.geojson";
-        } else {
+        } else if (country === "Italy") {
+            mapData = "italy.geojson";
+        }
+        else {
             console.error("Unsupported country:", country);
             return;
         }
