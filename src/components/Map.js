@@ -201,28 +201,28 @@ const loadCitiesData = (country) => {
         return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-DE.csv",
              parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     } else if (country.toLowerCase() === "france") {
-        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-FR.csv",
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-FR.csv",
             parseCitiesData
         ).then((data) => {return buildIndex(data, cleanString)});
     } else if (country.toLowerCase() === "netherlands") {
         // return d3.dsv(";", "cities-NL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-NL.csv",
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-NL.csv",
             parseCitiesData
         ).then((data) => {return buildIndex(data, cleanString)});
     } else if (country.toLowerCase() === "sweden") {
-        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-SE.csv",
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-SE.csv",
             parseCitiesData
         ).then((data) => {return buildIndex(data, cleanString)});
     } else if (country.toLowerCase() === "italy") {
-        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-IT.csv",
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-IT.csv",
             parseCitiesData
         ).then((data) => {return buildIndex(data, cleanString)});
     } else if (country.toLowerCase() === "turkey") {
-        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-TR.csv",
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-TR.csv",
             parseCitiesData
         ).then((data) => {return buildIndex(data, cleanString)});
     } else if (country.toLowerCase() === "poland") {
-        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-PL.csv",
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-PL.csv",
             parseCitiesData
         ).then((data) => {return buildIndex(data, cleanString)});
     }
@@ -413,19 +413,19 @@ const Map = ({ country }) => {
         
         let mapData;
         if (country.toLowerCase() === "germany") {
-            mapData = "germany.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/germany.geojson";
         } else if (country.toLowerCase() === "france") {
-            mapData = "france.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/france.geojson";
         } else if (country.toLowerCase() === "netherlands") {
-            mapData = "netherlands.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/netherlands.geojson";
         } else if (country.toLowerCase() === "sweden") {
-            mapData = "sweden.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/sweden.geojson";
         } else if (country.toLowerCase() === "italy") {
-            mapData = "italy.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/italy.geojson";
         } else if (country.toLowerCase() === "turkey") {
-            mapData = "turkey.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/turkey.geojson";
         } else if (country.toLowerCase() === "poland") {
-            mapData = "poland.geojson";
+            mapData = "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/poland.geojson";
         } else {
             console.error("Unsupported country:", country);
             return;
