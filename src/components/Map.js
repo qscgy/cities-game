@@ -14,6 +14,7 @@ function cleanStringGenerator(country) {
                 .replace(/ö/g, "o")
                 .replace(/ß/g, "ss")
                 .replace(/ä/g, "a")
+                .replace(/-/g, " ")
                 .replace(/v\. d\./g, "vor der")
                 .replace(/v\.d\./g, "vor der")
                 .replace(/b\./g, "bei")
@@ -90,6 +91,35 @@ function cleanStringGenerator(country) {
                 .replace(/î/g, "i")
                 .replace(/\s*/g, "");
         }
+    } else if (country==="Turkey") {
+        return function (str) {
+            return str
+                .toLowerCase()
+                .replace(/ü/g, "u")
+                .replace(/ö/g, "o")
+                .replace(/ş/g, "s")
+                .replace(/ğ/g, "g")
+                .replace(/ı/g, "i")
+                .replace(/ç/g, "c")
+                .replace(/i̇/g, "i")
+                .replace(/\s*/g, "");
+        }
+    } else if (country==="Poland") {
+        return function (str) {
+            return str
+                .toLowerCase()
+                .replace(/ł/g, "l")
+                .replace(/ó/g, "o")
+                .replace(/ę/g, "e")
+                .replace(/ą/g, "a")
+                .replace(/ś/g, "s")
+                .replace(/ć/g, "c")
+                .replace(/ź/g, "z")
+                .replace(/ż/g, "z")
+                .replace(/ń/g, "n")
+                .replace(/-/g,' ')
+                .replace(/\s*/g, "");
+        }
     }
 }
 
@@ -123,7 +153,7 @@ const buildIndex = (data, keyGen) => {
 }
 
 const parseCitiesData = (d) => {
-    // console.log(d.index);
+    console.log(d.Population.replace(',',''));
     let altNames;
     if (d.AlternateNames.includes(",")) {
         altNames = d.AlternateNames.split(",").map((name) => name.trim());
@@ -136,7 +166,7 @@ const parseCitiesData = (d) => {
 
     const obj = {
         City: d.City,
-        Population: +d.Population,
+        Population: +d.Population.replace(',',''),
         Longitude: +d.Longitude,
         Latitude: +d.Latitude,
         "city-state": d["city-state"],
@@ -150,7 +180,7 @@ const parseCitiesData = (d) => {
 const adminName = (country) => {
     if (country==='France'){
         return 'regional';
-    } else if (country=='Germany'){
+    } else if (country==='Germany'){
         return 'state';
     } else if (country==='Netherlands'){
         return 'provincial';
@@ -158,6 +188,10 @@ const adminName = (country) => {
         return 'county';
     } else if (country==="Italy") {
         return 'regional';
+    } else if (country==="Turkey") {
+        return 'provincial';
+    } else if (country==="Poland") {
+        return 'voivodeship';
     }
 }
 
@@ -174,6 +208,10 @@ const loadCitiesData = (country) => {
         return d3.dsv(";", "cities-SE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     } else if (country === "Italy") {
         return d3.dsv(";", "cities-IT.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    } else if (country==="Turkey") {
+        return d3.dsv(";", "cities-TR.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    } else if (country==="Poland") {
+        return d3.dsv(";", "cities-PL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
     }
     throw new Error(`Unsupported country: ${country}`);
 };
@@ -248,6 +286,12 @@ const Map = ({ country }) => {
     } else if (country === "Italy") {
         ctr = [12.57, 41.87];
         sc = 2500;
+    } else if (country==="Turkey") {
+        ctr = [35.0, 39.0];
+        sc = 2000;
+    } else if (country==="Poland") {
+        ctr = [19.0, 52.0];
+        sc = 3000;
     }
 
     const mapRef = useRef();
@@ -273,6 +317,7 @@ const Map = ({ country }) => {
 
     function handleChange(e) {
         const val = e.target.value;
+        console.log(cleanString("İstanbul"));
         if (cleanString(val) in citiesData) {
             const citiesNamed = citiesData[cleanString(val)];
             citiesNamed.forEach((d) => {
@@ -315,7 +360,7 @@ const Map = ({ country }) => {
             .select("svg");
         const circleScale = d3.scaleSqrt()
             .domain([1, 2e7])
-            .range([1, 80]);
+            .range([1, 50]);
         
         const tooltip = d3
             .select(mapRef.current)
@@ -364,8 +409,11 @@ const Map = ({ country }) => {
             mapData = "sweden.geojson";
         } else if (country === "Italy") {
             mapData = "italy.geojson";
-        }
-        else {
+        } else if (country === "Turkey") {
+            mapData = "turkey.geojson";
+        } else if (country === "Poland") {
+            mapData = "poland.geojson";
+        } else {
             console.error("Unsupported country:", country);
             return;
         }
