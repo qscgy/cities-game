@@ -4,7 +4,7 @@ import Map from "./components/Map";
 import Dropdown from "./components/Dropdown";
 
 function App() {
-  const [currentCountry, setCurrentCountry] = useState("Turkey");
+  const [currentCountry, setCurrentCountry] = useState("poland");
 
   const handleCountryChange = (country) => {
     console.log("Country changed to:", country);
@@ -12,24 +12,18 @@ function App() {
   };
 
   const availableCountries = [
-    {'value': "France", 'label': "France"},
-    {'value': "Germany", 'label': "Germany"},
-    {'value': "Italy", 'label': "Italy"},
-    {'value': "Netherlands", 'label': "The Netherlands"},
-    {'value': "Sweden", 'label': "Sweden"},
-    {'value': "Turkey", 'label': "Turkey"},
-    {'value': "Poland", "label": "Poland"}
+    {'value': "france", 'label': "France"},
+    {'value': "germany", 'label': "Germany"},
+    {'value': "italy", 'label': "Italy"},
+    {'value': "netherlands", 'label': "The Netherlands"},
+    {'value': "poland", "label": "Poland"},
+    {'value': "sweden", 'label': "Sweden"},
+    {'value': "turkey", 'label': "Turkey"}
   ]
 
   return (
     <div className="App">
-      {/* <span style={{'fontSize': '20px'}}>Select country:</span>
-      <button onClick={() => (handleCountryChange("France"))}>France</button>
-      <button onClick={() => (handleCountryChange("Germany"))}>Germany</button>
-      <button onClick={() => (handleCountryChange("Italy"))}>Italy</button>
-      <button onClick={() => (handleCountryChange("Netherlands"))}>Netherlands</button>
-      <button onClick={() => (handleCountryChange("Sweden"))}>Sweden</button>
-      <br/> */}
+      <p style={{display: "inline"}}>Country:</p>
       <Dropdown options={availableCountries} onSelect={handleCountryChange} />
       <Map country={currentCountry} key={`map-${currentCountry}`} />
     </div>

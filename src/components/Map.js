@@ -4,7 +4,7 @@ import List from "./List";
 import "./Map.css";
 
 function cleanStringGenerator(country) {
-    if (country === "Germany") {
+    if (country.toLowerCase() === "germany") {
         return function (str) {
             return str
                 .toLowerCase()
@@ -25,7 +25,7 @@ function cleanStringGenerator(country) {
                 .replace(/i\.Bay\./g, "in Bayern")
                 .replace(/\s*/g, "");
         };
-    } else if (country === "France") {
+    } else if (country.toLowerCase() === "france") {
         return function (str) {
             return str
                 .toLowerCase()
@@ -50,7 +50,7 @@ function cleanStringGenerator(country) {
                 .replace(/-/g, " ")
                 .replace(/\s*/g, "");
         };
-    } else if (country==='Sweden'){
+    } else if (country.toLowerCase() ==='sweden'){
         return function (str) {
             return str
                 .toLowerCase()
@@ -59,7 +59,7 @@ function cleanStringGenerator(country) {
                 .replace(/ö/g, "o")
                 .replace(/\s*/g, "");
         }
-    } else if (country==="Netherlands") {
+    } else if (country.toLowerCase() === "netherlands") {
         return function (str) {
             return str
                 .toLowerCase()
@@ -69,7 +69,7 @@ function cleanStringGenerator(country) {
                 .replace(/â/g, "a")
                 .replace(/\s*/g, "");
         }
-    } else if (country==="Italy") {
+    } else if (country.toLowerCase() === "italy") {
         return function (str) {
             return str
                 .toLowerCase()
@@ -91,7 +91,7 @@ function cleanStringGenerator(country) {
                 .replace(/î/g, "i")
                 .replace(/\s*/g, "");
         }
-    } else if (country==="Turkey") {
+    } else if (country.toLowerCase() === "turkey") {
         return function (str) {
             return str
                 .toLowerCase()
@@ -104,7 +104,7 @@ function cleanStringGenerator(country) {
                 .replace(/i̇/g, "i")
                 .replace(/\s*/g, "");
         }
-    } else if (country==="Poland") {
+    } else if (country.toLowerCase() === "poland") {
         return function (str) {
             return str
                 .toLowerCase()
@@ -178,40 +178,53 @@ const parseCitiesData = (d) => {
 }
 
 const adminName = (country) => {
-    if (country==='France'){
+    if (country.toLowerCase() ==='france'){
         return 'regional';
-    } else if (country==='Germany'){
+    } else if (country.toLowerCase() ==='germany'){
         return 'state';
-    } else if (country==='Netherlands'){
+    } else if (country.toLowerCase() ==='netherlands'){
         return 'provincial';
-    } else if (country==='Sweden'){
+    } else if (country.toLowerCase() ==='sweden'){
         return 'county';
-    } else if (country==="Italy") {
+    } else if (country.toLowerCase() === "italy") {
         return 'regional';
-    } else if (country==="Turkey") {
+    } else if (country.toLowerCase() === "turkey") {
         return 'provincial';
-    } else if (country==="Poland") {
+    } else if (country.toLowerCase() === "poland") {
         return 'voivodeship';
     }
 }
 
 const loadCitiesData = (country) => {
     const cleanString = cleanStringGenerator(country);
-    if (country === "Germany") {
-        return d3.dsv(";", "cities-DE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-    } else if (country === "France") {
-        const data = d3.dsv(";", "cities-FR.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-        return data;
-    } else if (country === "Netherlands") {
-        return d3.dsv(";", "cities-NL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-    } else if (country === "Sweden") {
-        return d3.dsv(";", "cities-SE.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-    } else if (country === "Italy") {
-        return d3.dsv(";", "cities-IT.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-    } else if (country==="Turkey") {
-        return d3.dsv(";", "cities-TR.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
-    } else if (country==="Poland") {
-        return d3.dsv(";", "cities-PL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    if (country.toLowerCase() === "germany") {
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/city-data/refs/heads/main/cities-DE.csv",
+             parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+    } else if (country.toLowerCase() === "france") {
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-FR.csv",
+            parseCitiesData
+        ).then((data) => {return buildIndex(data, cleanString)});
+    } else if (country.toLowerCase() === "netherlands") {
+        // return d3.dsv(";", "cities-NL.csv", parseCitiesData).then((data)=>{return buildIndex(data, cleanString)});
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-NL.csv",
+            parseCitiesData
+        ).then((data) => {return buildIndex(data, cleanString)});
+    } else if (country.toLowerCase() === "sweden") {
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-SE.csv",
+            parseCitiesData
+        ).then((data) => {return buildIndex(data, cleanString)});
+    } else if (country.toLowerCase() === "italy") {
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-IT.csv",
+            parseCitiesData
+        ).then((data) => {return buildIndex(data, cleanString)});
+    } else if (country.toLowerCase() === "turkey") {
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-TR.csv",
+            parseCitiesData
+        ).then((data) => {return buildIndex(data, cleanString)});
+    } else if (country.toLowerCase() === "poland") {
+        return d3.dsv(";", "https://raw.githubusercontent.com/qscgy/cities-game/refs/heads/main/public/cities-PL.csv",
+            parseCitiesData
+        ).then((data) => {return buildIndex(data, cleanString)});
     }
     throw new Error(`Unsupported country: ${country}`);
 };
@@ -271,25 +284,25 @@ const Map = ({ country }) => {
 
     const [citiesData, setCitiesData] = useState();
 
-    if (country === "Germany") {
+    if (country.toLowerCase() === "germany") {
         ctr = [10.5, 51.3];
         sc = 3000;
-    } else if (country === "France") {
+    } else if (country.toLowerCase() === "france") {
         ctr = [2.5, 46.5];
         sc = 2500;
-    } else if (country === "Netherlands") {
+    } else if (country.toLowerCase() === "netherlands") {
         ctr = [5.3, 52.1];
         sc = 7000;
-    } else if (country === "Sweden") {
+    } else if (country.toLowerCase() === "sweden") {
         ctr = [18.64, 62.8];
         sc = 1200;
-    } else if (country === "Italy") {
+    } else if (country.toLowerCase() === "italy") {
         ctr = [12.57, 41.87];
         sc = 2500;
-    } else if (country==="Turkey") {
+    } else if (country.toLowerCase() === "turkey") {
         ctr = [35.0, 39.0];
         sc = 2000;
-    } else if (country==="Poland") {
+    } else if (country.toLowerCase() === "poland") {
         ctr = [19.0, 52.0];
         sc = 3000;
     }
@@ -399,19 +412,19 @@ const Map = ({ country }) => {
         });
         
         let mapData;
-        if (country === "Germany") {
+        if (country.toLowerCase() === "germany") {
             mapData = "germany.geojson";
-        } else if (country === "France") {
+        } else if (country.toLowerCase() === "france") {
             mapData = "france.geojson";
-        } else if (country === "Netherlands") {
+        } else if (country.toLowerCase() === "netherlands") {
             mapData = "netherlands.geojson";
-        } else if (country === "Sweden") {
+        } else if (country.toLowerCase() === "sweden") {
             mapData = "sweden.geojson";
-        } else if (country === "Italy") {
+        } else if (country.toLowerCase() === "italy") {
             mapData = "italy.geojson";
-        } else if (country === "Turkey") {
+        } else if (country.toLowerCase() === "turkey") {
             mapData = "turkey.geojson";
-        } else if (country === "Poland") {
+        } else if (country.toLowerCase() === "poland") {
             mapData = "poland.geojson";
         } else {
             console.error("Unsupported country:", country);
@@ -484,7 +497,7 @@ const Map = ({ country }) => {
                        {totalCapitals>0 && <li>{nCapitals} out of {totalCapitals} {adminName(country)} capitals</li>}
                     </ul>
                 </div>
-                <div className="cities-list-container"><List items={cities} /></div>
+                <div className="cities-list-container"><List items={cities} country={country} /></div>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Dropdown.css'
 
-function Dropdown({ options, onSelect }) {
+function Dropdown({ options, onSelect}) {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleChange = (event) => {
@@ -11,13 +11,11 @@ function Dropdown({ options, onSelect }) {
   };
 
   return (
-    <select value={selectedValue} onChange={handleChange}>
-      <optgroup style={{fontSize: "40"}}>
-        <option value="" disabled>Select an option</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>{option.label}</option>
-        ))}
-      </optgroup>
+    <select value={selectedValue} onChange={handleChange} className="country-selector">
+      <option value="" disabled>Select a country</option>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>{option.label}</option>
+      ))}
     </select>
   );
 }

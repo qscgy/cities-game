@@ -3,3 +3,7 @@
     font-size: 20px;
     /* align-items: center; */
 }
+
+.cities-list li {
+    padding-left: 6px;
+}
